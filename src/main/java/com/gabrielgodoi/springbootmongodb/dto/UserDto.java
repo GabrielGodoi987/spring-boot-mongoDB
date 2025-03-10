@@ -1,13 +1,17 @@
 package com.gabrielgodoi.springbootmongodb.dto;
 
+import com.gabrielgodoi.springbootmongodb.domain.Post;
 import com.gabrielgodoi.springbootmongodb.domain.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDto implements Serializable {
     private String id;
     private String name;
     private String email;
+    private List<String> posts = new ArrayList<>();
 
     public UserDto() {
     }
@@ -40,5 +44,9 @@ public class UserDto implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<String> getPosts() {
+        return posts;
     }
 }

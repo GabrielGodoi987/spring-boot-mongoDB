@@ -1,5 +1,6 @@
 package com.gabrielgodoi.springbootmongodb.resources;
 
+import com.gabrielgodoi.springbootmongodb.domain.Post;
 import com.gabrielgodoi.springbootmongodb.domain.User;
 import com.gabrielgodoi.springbootmongodb.dto.UserDto;
 import com.gabrielgodoi.springbootmongodb.services.UserService;
@@ -55,5 +56,12 @@ public class UserResource {
         user = this.userService.update(user);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User user = this.userService.findById(id);
+
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
