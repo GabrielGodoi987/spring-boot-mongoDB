@@ -34,16 +34,20 @@ public class Instantiation implements CommandLineRunner {
         User gabriel = new User(null, "Gabriel Godoi", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
+        User john = new User(null, "John Macarktney", "john@gmail.com");
 
-        this.userRepository.saveAll(Arrays.asList(gabriel, alex, bob));
+        this.userRepository.saveAll(Arrays.asList(gabriel, alex, bob, john));
 
 
         Post post1 = new Post(null, simpleDateFormat.parse("21/03/2018").toInstant(), "Partiu viagem", "viagem de negócios para bhali", new AuthorDto(gabriel));
         Post post2 = new Post(null, simpleDateFormat.parse("25/03/2018").toInstant(), "Reunião", "Hoje fizemos um contrato histórico, um milhão de reais hahaha", new AuthorDto(gabriel));
         CommentDto commentDto1 = new CommentDto("Boa Viagem", simpleDateFormat.parse("21/03/2018").toInstant(), new AuthorDto(alex));
-        CommentDto commentDto2 = new CommentDto("Você é foda mlk", simpleDateFormat.parse("25/03/2018").toInstant(), new AuthorDto(bob));
+        CommentDto commentDto2 = new CommentDto("Vamos pra cima na reunião de hoje meu caro!", simpleDateFormat.parse("25/03/2018").toInstant(), new AuthorDto(bob));
         post1.getCommentDto().addAll(Arrays.asList(commentDto1, commentDto2));
 
+        CommentDto commentDto3 = new CommentDto("Parabéns por mais uma conquista", simpleDateFormat.parse("25/03/2018").toInstant(), new AuthorDto(bob));
+        CommentDto commentDto4 = new CommentDto("Parabéns meu caro!", simpleDateFormat.parse("25/03/2018").toInstant(), new AuthorDto(john));
+        post2.getCommentDto().addAll(Arrays.asList(commentDto3, commentDto4));
         this.postRepository.saveAll(Arrays.asList(post1, post2));
 
         gabriel.getPosts().addAll(Arrays.asList(post1, post2));
